@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<title>Button Actions</title>
+	<h:outputStylesheet library="css" name="bulma.min.css" />
+</h:head>
+<h:body>
+
+	<h:panelGroup layout="block" styleClass="container">
+		<br />
+		<br />
+		<h:outputText value="Ajax Examples" styleClass="is-size-5-desktop" />
+		<br />
+		<h:form id="form">
+			<img id="ajaxStatus" src="#{request.contextPath}/resources/images/loading.gif" />
+			<br/><br />
+			
+			<h:inputText value="#{ajaxBean2.username}" p:placeholder="Enter username ">
+				<f:ajax event="blur" listener="#{ajaxBean2.fetchDetails}" onevent="ajaxHandler" render="details"/> 
+			</h:inputText> <br/><br/>
+			
+			
+			<h:outputText value="Recommended Emails" styleClass="is-size-5-desktop has-text-black"/><br/>
+			<h:panelGroup layout="block" id="details">
+				<h:panelGroup rendered="#{ajaxBean2.visible}">
+					<h:outputText value="#{ajaxBean2.email1}" id="email1" styleClass="is-size-6-desktop has-text-info"/> #{'    '} <br/>
+					<h:outputText value="#{ajaxBean2.email2}" id="email2" styleClass="is-size-6-desktop has-text-warning"/> <br/>
+					<h:outputText value="#{ajaxBean2.email3}" id="email3" styleClass="is-size-6-desktop has-text-success"/> <br/>
+				</h:panelGroup>
+			</h:panelGroup>
+			<br/>
+			<h:button value="Go Back" outcome="/index"
+				styleClass="button is-primary"></h:button> #{'    '}
+		</h:form>
+	</h:panelGroup>
+	<script>
+		const ajaxStatusEl = document.querySelector("#ajaxStatus");
+		ajaxStatusEl.style.visibility = "hidden";
+		function ajaxHandler(data) {
+
+			console.table(data);
+			if (data.status === 'complete') {
+				console.log('Request Completed.')
+				ajaxStatus.style.visibility = "hidden";
+			}
+
+			if (data.status === 'begin') {
+				console.log('Request Started..')
+				ajaxStatusEl.style.visibility = "visible";
+			}
+		}
+	</script>
+</h:body>
+</html>

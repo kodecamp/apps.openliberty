@@ -1,0 +1,70 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<title>Button Actions</title>
+	<h:outputStylesheet library="css" name="bulma.min.css" />
+</h:head>
+<h:body>
+
+	<h:panelGroup layout="block" styleClass="container">
+		<br />
+		<br />
+		<h:outputText value="Buttons(Actions)" styleClass="is-size-5-desktop" />
+		
+		<br/>
+		<h:form id="form" prependId="false">
+			<p id="ajaxMsg" class="is-size-4-desktop has-text-danger">Please Wait...</p>
+			<br/>
+			<h:inputText value="#{actionsBean2.value}" p:placeholder="Enter Value" id="value"/> #{'    '} 
+			<h:inputText value="#{actionsBean2.name}" p:placeholder="Enter Name" id="name">
+				<f:ajax event="blur" execute="" listener="#{actionsBean2.ajaxMethod}" render="out_name out_value ajaxMsg" 
+				onevent="handleAjaxRequest"/>
+					
+				
+			</h:inputText>#{'    '}
+			 
+			<h:inputText value="#{actionsBean2.address}" p:placeholder="Enter Address" id="address">
+				<f:ajax event="blur" execute="name value" listener="#{actionsBean2.ajaxMethod}" 
+				render="out_value out_name out_address ajaxMsg" onevent="handleAjaxRequest"/>
+			</h:inputText>
+			
+			<br />
+			<h:outputText styleClass="is-size-5-desktop has-text-success" value="#{actionsBean2.value}" id="out_value"/> #{'    '}
+			<h:outputText styleClass="is-size-5-desktop has-text-info" value="#{actionsBean2.name}" id="out_name"/> #{'    '}
+			<h:outputText styleClass="is-size-5-desktop has-text-black" value="#{actionsBean2.address}" id="out_address"/>
+			<br /> <br/>
+			
+			<h:commandButton action="/index" value="Home" styleClass="button is-primary">
+				
+			</h:commandButton> #{'    '}
+			 
+			<h:commandButton action="#{actionsBean2.action1}" value="Action" styleClass="button is-dark">
+				<f:ajax/>
+			</h:commandButton> #{'    '}
+				
+		</h:form>
+	</h:panelGroup>
+	<script>
+		document.querySelector("#ajaxMsg").style.visibility = "hidden";	
+		function handleAjaxRequest(data) {
+			if(data.status === "begin"){
+				console.log("ajax request started..");
+				document.querySelector("#ajaxMsg").style.visibility = "visible";	
+			}
+			
+			if(data.status === "complete"){
+				console.log("request is complete");
+				document.querySelector("#ajaxMsg").style.visibility = "hidden";	
+			}
+			
+		}
+		
+		
+	</script>
+</h:body>
+</html>

@@ -1,0 +1,101 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<title>Validations and Conversions</title>
+	<h:outputStylesheet library="css" name="bulma.min.css" />
+</h:head>
+<h:body>
+	<f:view>
+		<!-- Resource Bundle for this page -->
+		<!-- <f:loadBundle var="msgs" basename="in.kodecamp.resourcebundle.AppMessages"/> -->
+		<h:outputText value="#{msgs.message}"></h:outputText>
+		<h:panelGroup layout="block" styleClass="container">
+			<br />
+			<h:outputText value="Convertors" styleClass="is-size-5-desktop" />
+			<br />
+			<h:messages errorClass="has-text-danger" showSummary="true" />
+			<h:form id="form" prependId="false">
+				<img id="ajaxStatus"
+					src="#{request.contextPath}/resources/images/loading.gif" />
+				<br />
+				<h:panelGrid id="panel" columns="2" border="0" cellpadding="10"
+					styleClass="table is-bordered is-striped is-narrow is-hoverable"
+					cellspacing="1">
+					<f:facet name="header">
+						<h:outputText value="Student Details" />
+					</f:facet>
+
+					<h:inputText value="#{convertorExampleBean2.name}" label="Name"
+						id="name" p:placeholder="#{msgs['validators.label.name']}">
+						<f:validateRequired for="name"></f:validateRequired>
+
+						<!-- <f:validator validatorId="noBlankSpaceValidator" /> -->
+						<f:validateLength for="name" minimum="5" maximum="15" />
+					</h:inputText>
+					<h:message for="name" styleClass="has-text-danger" />
+
+					<h:inputText value="#{convertorExampleBean2.address}" id="address"
+						label="Address" p:placeholder="Enter address">
+						<f:validateRequired for="address" />
+						<!-- <f:validator validatorId="noBlankSpaceValidator" /> -->
+						<f:validateLength for="address" minimum="5" maximum="15" />
+					</h:inputText>
+					<h:message for="address" styleClass="has-text-danger" />
+
+					<h:inputText value="#{convertorExampleBean2.age}" label="Age"
+						id="age" p:placeholder="Enter age">
+						<!-- <f:converter converterId="integerConvertor" for="age"/> -->
+						<f:convertNumber />
+						<f:validateRequired for="age" />
+						<!-- <f:validator validatorId="numberValidator" for="age"/> -->
+						<f:validateLongRange for="age" minimum="18" maximum="60" />
+
+					</h:inputText>
+					<h:message for="age" styleClass="has-text-danger" />
+
+					<h:inputText value="#{convertorExampleBean2.percentScore}"
+						label="Score" id="Score" required="true"
+						p:placeholder="Enter percent score">
+						<f:validateRequired for="address" />
+						<f:validateDoubleRange minimum="0.0" maximum="100.0" />
+					</h:inputText>
+					<h:message for="score" styleClass="has-text-danger" />
+
+					<f:facet name="footer">
+						<h:panelGroup style="display:block; text-align:center">
+							<h:commandButton value="Submit" styleClass="button is-dark"
+								action="#{convertorExampleBean2.save}">
+							</h:commandButton>
+						</h:panelGroup>
+					</f:facet>
+				</h:panelGrid>
+				<br />
+				<h:button value="Go Back" outcome="/index"
+					styleClass="button is-primary"></h:button> #{'    '}
+			
+			
+		</h:form>
+		</h:panelGroup>
+		<script>
+			const ajaxStatusEl = document.querySelector("#ajaxStatus");
+			ajaxStatusEl.style.visibility = "hidden";
+			function ajaxHandler(data) {
+
+				console.table(data);
+				if (data.status === 'complete') {
+					console.log('Request Completed.')
+					ajaxStatus.style.visibility = "hidden";
+				}
+
+				if (data.status === 'begin') {
+					console.log('Request Started..')
+					ajaxStatusEl.style.visibility = "visible";
+				}
+			}
+		</script>
+	</f:view>
+</h:body>
+</html>

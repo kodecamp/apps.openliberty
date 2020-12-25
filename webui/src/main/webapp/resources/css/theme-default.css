@@ -1,0 +1,22 @@
+:root{
+  /* 600 */
+  --primary: #00C853;
+  /* 200 */
+  --primary-light: #69F0AE;
+  /* 600 */
+  --secondary: #FB8C00;
+  /* 200 */
+  --secondary-light: #FFCC80;
+  /* 600 */
+  --danger: #d50000;
+  --danger-light: #ff5252;
+
+  --font-color: #161616;
+
+  --font-size: 10px;
+  --btn-pad-left: .5em;
+  --btn-pad-right: .5em;
+  --btn-pad-top: .5em;
+  --btn-pad-bottom: .5em;
+  --btn-outline: 1px solid var(--primary);
+}

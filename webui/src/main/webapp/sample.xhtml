@@ -1,0 +1,29 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>Page 1</title>
+	<h:outputStylesheet library="css" name="bulma.min.css" />
+</h:head>
+<h:body>
+
+	<h:form id="form">
+
+		<h1>Page 1</h1>
+		
+		<h:inputText id="address" value="#{sampleBean.address}" p:placeholder="Address"/> 
+		<h:outputText value="#{sampleBean.address}" id="outputAddressValue"/> <br/> <br/>
+		
+		<h:inputText id="name" value="#{sampleBean.name}" p:placeholder="Name">
+			<f:ajax execute="address" event="blur" listener="#{sampleBean.doSomething}" 
+			render="outputNameValue outputAddressValue"/>
+		</h:inputText>  
+		<h:outputText value="#{sampleBean.name}" id="outputNameValue"/> <br/>
+		
+	</h:form>
+
+</h:body>
+</html>

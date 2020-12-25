@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+    version="2.0"
+    xmlns="http://java.sun.com/xml/ns/persistence">
+  <persistence-unit
+      name="cmsPersistenceUnit"
+      transaction-type="JTA">
+
+    <!-- <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
+    <jta-data-source>jdbc/cmsDataSource</jta-data-source>
+    <!-- <non-jta-data-source>java:openejb/Resource/collegeDsUnManaged</non-jta-data-source> -->
+    <!-- shouldn't be valid for java SE per specification, but it works for EclipseLink ... -->
+    <!-- <exclude-unlisted-classes>false</exclude-unlisted-classes> -->
+    <class>in.kodecamp.models.StudentEntity</class>
+    <properties>
+
+      <!-- <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" /> -->
+      <!-- <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp:localhost/~/cms" /> -->
+      <!-- <property name="javax.persistence.jdbc.user" value="test" /> -->
+      <!-- <property name="javax.persistence.jdbc.password" value="test" /> -->
+
+      <!-- EclipseLink should create the database schema automatically -->
+      <property
+          name="eclipselink.ddl-generation"
+          value="create-tables" />
+      <property
+          name="eclipselink.ddl-generation.output-mode"
+          value="database" />
+      <!-- INFO, FINE,FINER, FINEST, WARNING,SEVERE,ALL -->
+      <property
+          name="eclipselink.logging.level"
+          value="FINE" />
+    </properties>
+
+  </persistence-unit>
+</persistence>

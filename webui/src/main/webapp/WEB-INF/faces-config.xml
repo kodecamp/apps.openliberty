@@ -1,0 +1,25 @@
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd" version="2.3">
+
+  <application>
+    <message-bundle>in.kodecamp.resourcebundle.CustomDefaultMessages</message-bundle>
+    <resource-bundle>
+      <base-name>in.kodecamp.resourcebundle.AppMessages</base-name>
+      <var>msgs</var>
+    </resource-bundle>
+    <locale-config>
+      <default-locale>en</default-locale>
+      <!-- <default-locale>hi</default-locale> -->
+      <supported-locale>hi</supported-locale>
+      <!-- <supported-locale>en</supported-locale> -->
+    </locale-config>
+  </application>
+
+  <!-- <lifecycle> -->
+  <!-- <phase-listener>in.kodecamp.listeners.RestoreViewPhaseListener</phase-listener> -->
+  <!-- <phase-listener>in.kodecamp.listeners.ApplyRequestValuesPhaseListener</phase-listener> -->
+  <!-- <phase-listener>in.kodecamp.listeners.UpdateModelValuesPhaseListener</phase-listener> -->
+  <!-- <phase-listener>in.kodecamp.listeners.ProcessValidationsPhaseListener</phase-listener> -->
+  <!-- <phase-listener>in.kodecamp.listeners.InvokeApplicationPhaseListener</phase-listener> -->
+  <!-- <phase-listener>in.kodecamp.listeners.RenderResponsePhaseListener</phase-listener> -->
+  <!-- </lifecycle>  -->
+</faces-config>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>in.kodecamp</groupId>
+    <artifactId>apps</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>apps-services</artifactId>
+  <packaging>war</packaging>
+
+  <!-- properties -->
+  <properties>
+    <!-- Liberty configuration -->
+    <liberty.var.https.port>9443</liberty.var.https.port>
+    <liberty.var.http.port>9081</liberty.var.http.port>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>in.kodecamp</groupId>
+      <artifactId>apps-models</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <!-- <scope>compile</scope> -->
+    </dependency>
+
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- copying all dependencies to embedded server's library -->
+      <!-- This plugin will be executed in package phase -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <artifactItems>
+            <artifactItem>
+              <groupId>com.h2database</groupId>
+              <artifactId>h2</artifactId>
+              <version>${version.h2}</version>
+              <type>jar</type>
+              <overWrite>false</overWrite>
+              <outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/${server.name}/lib</outputDirectory>
+            </artifactItem>
+            <!-- <artifactItem> -->
+            <!-- <groupId>in.kodecamp.models</groupId> -->
+            <!-- <artifactId>apps-models</artifactId> -->
+            <!-- <version>1.0-SNAPSHOT</version> -->
+            <!-- <type>jar</type> -->
+            <!-- <overWrite>false</overWrite> -->
+            <!-- <outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/${server.name}/lib</outputDirectory> -->
+            <!-- </artifactItem> -->
+          </artifactItems>
+          <outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/${server.name}/lib</outputDirectory>
+          <overWriteReleases>false</overWriteReleases>
+          <overWriteSnapshots>true</overWriteSnapshots>
+        </configuration>
+      </plugin>
+
+      <!-- liberty maven plugin -->
+      <!-- goal => create will be executed before the package phase -->
+      <!-- directories will be created -->
+      <!-- rest goals (start) will be executed after package phase -->
+      <plugin>
+        <groupId>io.openliberty.tools</groupId>
+        <artifactId>liberty-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>create</goal>
+            </goals>
+            <configuration>
+              <stripVersion>true</stripVersion>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

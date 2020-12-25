@@ -1,0 +1,30 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>Page 1</title>
+	<h:outputStylesheet library="css" name="bulma.min.css" />
+</h:head>
+<h:body>
+
+
+
+	<h1>Page 2</h1>
+	<h:form id="form">
+		<h:outputLabel value="Question 01 : " style="color: black;font-weight: bold;" />
+		<h:outputText value="#{exerciseBean.test2.question}"></h:outputText> <br/>
+		<h:inputText value="#{exerciseBean.test2.answer}" p:placeholder="Write your answer here"></h:inputText>
+		<hr/>
+		<h:link value="Go To Index" outcome="/index" styleClass="button is-info"></h:link> #{'   '}
+		<h:commandButton action="#{exerciseBean.navigate('page1')}" value="Back" styleClass="button is-light"></h:commandButton> #{'    '}
+		<h:commandButton action="#{exerciseBean.navigate('page3')}" value="Next" styleClass="button is-dark"></h:commandButton>
+
+	</h:form>
+
+
+
+</h:body>
+</html>

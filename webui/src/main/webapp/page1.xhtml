@@ -1,0 +1,23 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>Page 1</title>
+	<h:outputStylesheet library="css" name="bulma.min.css" />
+</h:head>
+<h:body>
+
+	<h:form id="form">
+		<h1>Page 1 Updated</h1>
+                <h:outputText value="#{registrationBean.name}"/> <br/>
+                <h:outputText value="#{sampleBean.value}"/><br/>
+		<h:inputText value="#{registrationBean.name}" placeholder="Name"></h:inputText>
+		<h:commandButton action="#{registrationBean.navigate('page2')}" value="Next"
+			styleClass="button is-dark"></h:commandButton>
+	</h:form>
+
+</h:body>
+</html>

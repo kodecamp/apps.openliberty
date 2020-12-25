@@ -1,0 +1,23 @@
+<server description="server for prime faces based webui">
+
+  <!-- features -->
+  <featureManager>
+    <feature>jsf-2.3</feature>
+    <feature>cdi-2.0</feature>
+  </featureManager>
+
+  <!-- http end points settins -->
+  <!-- the values of below variables are set in maven properties file -->
+  <httpEndpoint
+      httpPort="${http.port}"
+      httpsPort="${https.port}"
+      id="defaultHttpEndpoint"
+      host="*" />
+
+  <webApplication
+      id="${app.name}"
+      location="${app.name}.war"
+      contextRoot="/" />
+
+  <applicationManager autoExpand="true" />
+</server>

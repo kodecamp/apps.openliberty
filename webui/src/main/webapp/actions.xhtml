@@ -1,0 +1,33 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<title>Button Actions</title>
+	<h:outputStylesheet library="css" name="bulma.min.css" />
+</h:head>
+<h:body>
+	
+	<h:panelGroup layout="block" styleClass="container">
+	<br/><br/>
+		<h:outputText value="Buttons(Actions)" styleClass="is-size-5-desktop"/> <br/>
+		<h:form id="form">
+
+			<h:inputText value="#{actionsBean.value}" placeholder="Name" id="value" name="value"></h:inputText> <br/> <br/>
+			
+			<h:link value="Home" outcome="/index" styleClass="button is-info" /> #{'    '}
+			<h:link value="h:link" outcome="actionresult?msg=hello world" styleClass="button is-success" includeViewParams="true"/> #{'    '}
+			<h:button value="h:button " outcome="actionresult?msg=hello world" styleClass="button is-primary" includeViewParams="true">				
+			</h:button> #{'    '}
+			
+			<h:commandLink action="#{actionsBean.action2}"
+				value="h:commandLink" styleClass="button is-dark" method="get"></h:commandLink> #{'    '}
+			<h:commandButton action="#{actionsBean.action1}"
+				value="h:commandButton" styleClass="button is-light" method="get"></h:commandButton>
+		</h:form>
+	</h:panelGroup>
+</h:body>
+</html>

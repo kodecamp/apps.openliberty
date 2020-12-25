@@ -1,0 +1,45 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>Page 1</title>
+	<h:outputStylesheet library="css" name="bulma.min.css" />
+</h:head>
+<h:body>
+<h:panelGroup layout="block" styleClass="container">
+	<h:form id="form">
+		<br/><br/><br/>
+		<h:link value="Home" outcome="/index" styleClass="button is-info"/> 
+		<br/><br/>
+		<h:outputText value="Service Providers" styleClass="is-size-5-desktop"/> #{'  '}
+		
+		<h:selectOneMenu value="#{contactsBean.selectedServiceProvider}">
+	<!-- 	  <f:selectItem itemLabel="Airtel" itemValue="airtel"></f:selectItem>
+		  <f:selectItem itemLabel="Vodafone" itemValue="vodafone"></f:selectItem>
+		  <f:selectItem itemLabel="Idea" itemValue="idea"></f:selectItem> -->
+		  <f:selectItems value="#{contactsBean.serviceProviders}"></f:selectItems>
+		</h:selectOneMenu> <br/><br/>
+		<h:inputText value="#{contactsBean.contact}" p:placeholder="Add new Contact"></h:inputText> #{'    '}
+
+		<h:commandButton value="Add New Contact"
+			action="#{contactsBean.addNew}" styleClass="button is-info"></h:commandButton>
+
+		<br/><br/>
+		<h:dataTable value="#{contactsBean.contacts}" var="contactDetails">
+			<h:column>
+				<f:facet name="header">Contact</f:facet>
+				<h:outputText value="#{contactDetails.number}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Service Provider</f:facet>
+				<h:outputText value="#{contactDetails.serviceProvider}" />
+			</h:column>
+			
+		</h:dataTable>
+	</h:form>
+</h:panelGroup>
+</h:body>
+</html>
