@@ -22,7 +22,7 @@
 target
 ./target
 ./settings
-./.metals
+.metals
 
 services/target
 services/.settings
